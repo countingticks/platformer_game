@@ -12,7 +12,7 @@ public class BigCloud {
 	
 	private float x, speed;
 	private int y;
-	private int lvlLenght = LoadSave.GetLevelData()[0].length * Game.TILES_SIZE / BIG_CLOUD_WIDTH;
+	private int cloudNumber = (int) Math.ceil((float) LoadSave.GetLevelData()[0].length * Game.TILES_SIZE / BIG_CLOUD_WIDTH);
 	private BufferedImage img;
 	
 	public BigCloud(float x, int y, float speed) { 
@@ -31,7 +31,7 @@ public class BigCloud {
 	}
 	
 	public void draw(Graphics g, int lvlOffset) { 
-		for (int i = 0; i < lvlLenght + 2; i++)
+		for (int i = 0; i < cloudNumber + 1; i++)
 			g.drawImage(img, (int) x + i * BIG_CLOUD_WIDTH - lvlOffset, y, BIG_CLOUD_WIDTH, BIG_CLOUD_HEIGHT, null);
 	}
 }

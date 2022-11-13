@@ -7,8 +7,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import main.Game;
-
 public class LoadSave {
 	
 	public static final String PLAYER_ATLAS = "player_sprites.png";
@@ -24,7 +22,9 @@ public class LoadSave {
 	public static final String MENU_BACKGROUND_IMG = "background_menu.png";
 	public static final String PLAYING_BACKGROUND_IMG = "playing_bg_img.png";
 	public static final String BIG_CLOUDS = "big_clouds.png";
-	public static final String SMALL_CLOUDS = "small_clouds.png";
+	public static final String SMALL_CLOUDS1 = "small_clouds1.png";
+	public static final String SMALL_CLOUDS2 = "small_clouds2.png";
+	public static final String SMALL_CLOUDS3 = "small_clouds3.png";
 	
 	public static BufferedImage GetSpriteAtlas(String fileName) { 
 		BufferedImage img = null;

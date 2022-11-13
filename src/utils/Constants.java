@@ -11,11 +11,23 @@ public class Constants {
 		public static final int BIG_CLOUD_WIDTH = (int) (BIG_CLOUD_WIDTH_DEFAULT * Game.SCALE);
 		public static final int BIG_CLOUD_HEIGHT = (int) (BIG_CLOUD_HEIGHT_DEFAULT * Game.SCALE);
 		
-		public static final int SMALL_CLOUD_WIDTH_DEFAULT = 74;
-		public static final int SMALL_CLOUD_HEIGHT_DEFAULT = 24;
+		public static final int SMALL_CLOUD1_WIDTH_DEFAULT = 74;
+		public static final int SMALL_CLOUD1_HEIGHT_DEFAULT = 24;
 		
-		public static final int SMALL_CLOUD_WIDTH = (int) (SMALL_CLOUD_WIDTH_DEFAULT * Game.SCALE);
-		public static final int SMALL_CLOUD_HEIGHT = (int) (SMALL_CLOUD_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int SMALL_CLOUD1_WIDTH = (int) (SMALL_CLOUD1_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SMALL_CLOUD1_HEIGHT = (int) (SMALL_CLOUD1_HEIGHT_DEFAULT * Game.SCALE);
+		
+		public static final int SMALL_CLOUD2_WIDTH_DEFAULT = 133;
+		public static final int SMALL_CLOUD2_HEIGHT_DEFAULT = 35;
+		
+		public static final int SMALL_CLOUD2_WIDTH = (int) (SMALL_CLOUD2_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SMALL_CLOUD2_HEIGHT = (int) (SMALL_CLOUD2_HEIGHT_DEFAULT * Game.SCALE);
+		
+		public static final int SMALL_CLOUD3_WIDTH_DEFAULT = 140;
+		public static final int SMALL_CLOUD3_HEIGHT_DEFAULT = 39;
+		
+		public static final int SMALL_CLOUD3_WIDTH = (int) (SMALL_CLOUD3_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SMALL_CLOUD3_HEIGHT = (int) (SMALL_CLOUD3_HEIGHT_DEFAULT * Game.SCALE);
 	}
 	
 	public static class UI { 

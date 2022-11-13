@@ -10,16 +10,17 @@ import utils.LoadSave;
 public class BackgroundOverlay {
 	
 	private BigCloud bigCloud;
-	private SmallCloud smallCloud[] = new SmallCloud[10];
+	private SmallCloud smallCloud[] = new SmallCloud[(int) Math.ceil((float) LoadSave.GetLevelData()[0].length * Game.TILES_SIZE / 400)];
 	private Random random = new Random();
 	private BufferedImage background;
 	
 	public BackgroundOverlay() { 
 		background = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BACKGROUND_IMG);
-		
+				
 		for (int i = 0; i < smallCloud.length; i++) { 
-			float size = random.nextFloat(0.6f, 1.2f);
-			smallCloud[i] = new SmallCloud(200 + i * random.nextInt(400, 500), random.nextInt(100, 350), 0.1f, size);
+			float size = random.nextFloat(0.6f, 1f);
+			int cloudType = random.nextInt(1, 4);
+			smallCloud[i] = new SmallCloud(200 + i * random.nextInt(400, 500), random.nextInt(100, 350), 0.1f, size, cloudType);
 		}
 		
 		bigCloud = new BigCloud(0, (int) (204 * Game.SCALE), 0.3f);
