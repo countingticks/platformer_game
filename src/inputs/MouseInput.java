@@ -17,12 +17,14 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-	
+		switch (Gamestate.state) { 
+			case PLAYING -> gamePanel.getGame().getPlaying().mouseDragged(e);
+		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		switch(Gamestate.state) { 
+		switch (Gamestate.state) { 
 			case MENU -> gamePanel.getGame().getMenu().mouseMoved(e);
 			case PLAYING -> gamePanel.getGame().getPlaying().mouseMoved(e);
 		}
@@ -30,7 +32,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		switch(Gamestate.state) { 
+		switch (Gamestate.state) { 
 			case PLAYING -> gamePanel.getGame().getPlaying().mouseClicked(e);
 		}
 	}
@@ -45,7 +47,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		switch(Gamestate.state) { 
+		switch (Gamestate.state) { 
 			case MENU -> gamePanel.getGame().getMenu().mouseReleased(e);
 			case PLAYING -> gamePanel.getGame().getPlaying().mouseReleased(e);
 		}
