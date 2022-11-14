@@ -1,20 +1,16 @@
 package gamestates;
 
-import static utils.Constants.Environment.BIG_CLOUD_HEIGHT;
-import static utils.Constants.Environment.BIG_CLOUD_WIDTH;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
 import environment.BackgroundOverlay;
 import levels.LevelManager;
 import main.Game;
+import particles.ParticleManager;
 import ui.PauseOverlay;
 import utils.LoadSave;
 
@@ -23,6 +19,7 @@ public class Playing extends State implements Statemethods {
 	private Player player;
 	private LevelManager levelManager;
 	private EnemyManager enemyManager;
+	private ParticleManager particleManager;
 	private PauseOverlay pauseOverlay;
 	private boolean paused = false;
 	
@@ -43,6 +40,7 @@ public class Playing extends State implements Statemethods {
 	private void initClasses() { 
 		levelManager = new LevelManager(game);
 		enemyManager = new EnemyManager(this);
+		particleManager = new ParticleManager();
 		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE));
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
@@ -56,6 +54,7 @@ public class Playing extends State implements Statemethods {
 			player.update();
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
 			bgOverlay.update();
+			particleManager.update();
 			checkCloseToBorder();
 		} else 
 			pauseOverlay.update();
@@ -81,6 +80,7 @@ public class Playing extends State implements Statemethods {
 		bgOverlay.draw(g, xLvlOffset);
 		levelManager.draw(g, xLvlOffset);
 		player.render(g, xLvlOffset);
+		particleManager.draw(g, xLvlOffset);
 		enemyManager.draw(g, xLvlOffset);
 
 		if (paused) { 

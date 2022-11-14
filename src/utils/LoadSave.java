@@ -1,5 +1,7 @@
 package utils;
 
+import static utils.Constants.EnemyConstants.CRABBY;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -10,8 +12,6 @@ import javax.imageio.ImageIO;
 
 import entities.Crabby;
 import main.Game;
-
-import static utils.Constants.EnemyConstants.CRABBY;
 
 public class LoadSave {
 	

@@ -12,7 +12,7 @@ import static utils.Constants.EnemyConstants.*;
 public class EnemyManager {
 
 	private Playing playing;
-	private BufferedImage[][] crabbyArr;
+	private BufferedImage[][] crabbyArray;
 	private ArrayList<Crabby> crabbies = new ArrayList<>();
 
 	public EnemyManager(Playing playing) {
@@ -36,7 +36,7 @@ public class EnemyManager {
 
 	private void drawCrabs(Graphics g, int lvlOffset) {
 		for (Crabby c : crabbies) {
-			g.drawImage(crabbyArr[c.getEnemyState()][c.getAniIndex()], (int) c.getHitbox().x - lvlOffset - CRABBY_DRAWOFFSET_X, (int) c.getHitbox().y - CRABBY_DRAWOFFSET_Y, CRABBY_WIDTH, CRABBY_HEIGHT, null);			
+			g.drawImage(crabbyArray[c.getEnemyState()][c.getAniIndex()], (int) c.getHitbox().x - lvlOffset - CRABBY_DRAWOFFSET_X, (int) c.getHitbox().y - CRABBY_DRAWOFFSET_Y, CRABBY_WIDTH, CRABBY_HEIGHT, null);			
 			
 			if (Game.DEBUG)
 				c.drawHitbox(g, lvlOffset);
@@ -44,10 +44,10 @@ public class EnemyManager {
 	}
 
 	private void loadEnemyImgs() {
-		crabbyArr = new BufferedImage[5][9];
+		crabbyArray = new BufferedImage[5][9];
 		BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.CRABBY_ATLAS);
-		for (int j = 0; j < crabbyArr.length; j++)
-			for (int i = 0; i < crabbyArr[j].length; i++)
-				crabbyArr[j][i] = temp.getSubimage(i * CRABBY_WIDTH_DEFAULT, j * CRABBY_HEIGHT_DEFAULT, CRABBY_WIDTH_DEFAULT, CRABBY_HEIGHT_DEFAULT);
+		for (int j = 0; j < crabbyArray.length; j++)
+			for (int i = 0; i < crabbyArray[j].length; i++)
+				crabbyArray[j][i] = temp.getSubimage(i * CRABBY_WIDTH_DEFAULT, j * CRABBY_HEIGHT_DEFAULT, CRABBY_WIDTH_DEFAULT, CRABBY_HEIGHT_DEFAULT);
 	}
 }

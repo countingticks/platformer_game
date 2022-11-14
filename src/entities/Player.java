@@ -2,13 +2,11 @@ package entities;
 
 import static utils.Constants.PlayerConstants.*;
 import static utils.HelpMethods.*;
-import static utils.Constants.Particle.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import particles.ParticleManager;
 import utils.LoadSave;
 
 public class Player extends Entity {
@@ -34,29 +32,22 @@ public class Player extends Entity {
 	private float jumpSpeed = -2.25f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
-	
-	// particles
-	private ParticleManager particleManager;
 
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		loadAnimations();
 		initHitbox(x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE));
-		particleManager = new ParticleManager();
 	}
 
 	public void update() {
 		updatePos();
 		updateAnimationTick();
 		setAnimation();
-		particleManager.update(playerAction);
 	}
 
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
-		
-		particleManager.draw(g, (int) (hitbox.x - PARTICLE_WIDTH / 2) - lvlOffset, (int) (hitbox.y + PARTICLE_HEIGHT / 2.8f), playerAction);
-		
+			
 		if (Game.DEBUG)
 			drawHitbox(g, lvlOffset);
 	}

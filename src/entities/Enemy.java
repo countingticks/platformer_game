@@ -7,8 +7,9 @@ import static utils.Constants.Directions.*;
 import main.Game;
 
 public abstract class Enemy extends Entity {
+	
 	protected int aniIndex, enemyState, enemyType;
-	protected int aniTick, aniSpeed = 25;
+	protected int aniTick, aniSpeed = 20;
 	protected boolean firstUpdate = true;
 	protected boolean inAir;
 	protected float fallSpeed;
@@ -73,7 +74,6 @@ public abstract class Enemy extends Entity {
 				if (IsSightClear(lvlData, hitbox, player.hitbox, tileY))
 					return true;
 			}
-
 		return false;
 	}
 
@@ -100,7 +100,7 @@ public abstract class Enemy extends Entity {
 			aniIndex++;
 			if (aniIndex >= GetSpriteAmount(enemyType, enemyState)) {
 				aniIndex = 0;
-				if(enemyState == ATTACK)
+				if (enemyState == ATTACK)
 					enemyState = IDLE;	
 			}
 		}
