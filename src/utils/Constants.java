@@ -4,6 +4,51 @@ import main.Game;
 
 public class Constants {
 	
+	public static class EnemyConstants { 
+		public static final int CRABBY = 0;
+		
+		public static final int IDLE = 0;
+		public static final int RUNNING = 1;
+		public static final int ATTACK = 2;
+		public static final int HIT = 3;
+		public static final int DEAD = 4;
+		
+		public static final int CRABBY_WIDTH_DEFAULT = 72;
+		public static final int CRABBY_HEIGHT_DEFAULT = 32;
+		
+		public static final int CRABBY_WIDTH = (int) (CRABBY_WIDTH_DEFAULT * Game.SCALE);
+		public static final int CRABBY_HEIGHT = (int) (CRABBY_HEIGHT_DEFAULT * Game.SCALE);
+		
+		public static final int CRABBY_DRAWOFFSET_X = (int) (26 * Game.SCALE);
+		public static final int CRABBY_DRAWOFFSET_Y = (int) (9 * Game.SCALE);
+		
+		public static int GetSpriteAmount(int enemy_type, int enemy_state) { 
+			switch (enemy_type) { 
+				case CRABBY -> {
+					int state = 0;
+					
+					switch (enemy_state) { 
+						case IDLE -> state = 9;
+						case RUNNING -> state = 6;
+						case ATTACK -> state = 7;
+						case HIT -> state = 4;
+						case DEAD -> state = 5;
+					}
+					return state;
+				}
+			}
+			return 0;
+		}
+	}
+	
+	public static class Particle { 
+		public static final int PARTICLE_WIDTH_DEFALT = 52;
+		public static final int PARTICLE_HEIGHT_DEFALT = 20;
+		
+		public static final int PARTICLE_WIDTH = (int) (PARTICLE_WIDTH_DEFALT * Game.SCALE);
+		public static final int PARTICLE_HEIGHT = (int) (PARTICLE_HEIGHT_DEFALT * Game.SCALE);
+	}
+	
 	public static class Environment { 
 		public static final int BIG_CLOUD_WIDTH_DEFAULT = 448;
 		public static final int BIG_CLOUD_HEIGHT_DEFAULT = 101;
@@ -78,24 +123,17 @@ public class Constants {
 		public static final int ATTACK_JUMP_2 = 8;
 
 		public static int GetSpriteAmount(int player_action) {
+			int action = 1;
+			
 			switch (player_action) {
-			case RUNNING:
-				return 6;
-			case IDLE:
-				return 5;
-			case HIT:
-				return 4;
-			case JUMP:
-			case ATTACK_1:
-			case ATTACK_JUMP_1:
-			case ATTACK_JUMP_2:
-				return 3;
-			case GROUND:
-				return 2;
-			case FALLING:
-			default:
-				return 1;
+				case RUNNING -> action = 6;
+				case IDLE -> action = 5;
+				case HIT -> action = 4;
+				case JUMP, ATTACK_1, ATTACK_JUMP_1, ATTACK_JUMP_2 -> action = 3;
+				case GROUND -> action = 2;
+				case FALLING -> action = 1;
 			}
+			return action;
 		}
 	}
 

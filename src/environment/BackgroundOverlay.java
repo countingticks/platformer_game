@@ -14,16 +14,25 @@ public class BackgroundOverlay {
 	private Random random = new Random();
 	private BufferedImage background;
 	
+	// small cloud
+	private float minSize = 0.3f * Game.SCALE;
+	private float maxSize = 0.6f * Game.SCALE;
+	private float smallCloudSpeed = 0.05f * Game.SCALE;
+	
+	// big cloud
+	private float bigCloudSpeed = 0.1f * Game.SCALE;
+	
 	public BackgroundOverlay() { 
 		background = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BACKGROUND_IMG);
 				
 		for (int i = 0; i < smallCloud.length; i++) { 
-			float size = random.nextFloat(0.6f, 1f);
+			float size = random.nextFloat(minSize, maxSize);
 			int cloudType = random.nextInt(1, 4);
-			smallCloud[i] = new SmallCloud(200 + i * random.nextInt(400, 500), random.nextInt(100, 350), 0.1f, size, cloudType);
+			
+			smallCloud[i] = new SmallCloud(200 + i * random.nextInt(400, 500), random.nextInt(100, 350), smallCloudSpeed, size, cloudType);
 		}
 		
-		bigCloud = new BigCloud(0, (int) (204 * Game.SCALE), 0.3f);
+		bigCloud = new BigCloud(0, (int) (204 * Game.SCALE), bigCloudSpeed);
 	}
 
 	public void update() { 
