@@ -29,7 +29,7 @@ public class BackgroundOverlay {
 			float size = random.nextFloat(minSize, maxSize);
 			int cloudType = random.nextInt(1, 4);
 			
-			smallCloud[i] = new SmallCloud(200 + i * random.nextInt(400, 500), random.nextInt(100, 350), smallCloudSpeed, size, cloudType);
+			smallCloud[i] = new SmallCloud((int) ((100 + i * random.nextInt(200, 250)) * Game.SCALE), (int) (random.nextInt(50, 175) * Game.SCALE), smallCloudSpeed, size, cloudType);
 		}
 		
 		bigCloud = new BigCloud(0, (int) (204 * Game.SCALE), bigCloudSpeed);

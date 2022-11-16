@@ -49,7 +49,7 @@ public class Constants {
 		public static final int PARTICLE_HEIGHT = (int) (PARTICLE_HEIGHT_DEFALT * Game.SCALE);
 		
 		public static final int PARTICLE_XOFFSET = (int) (26 * Game.SCALE);
-		public static final int PARTICLE_YOFFSET = (int) (19 * Game.SCALE);
+		public static final int PARTICLE_YOFFSET = (int) (20 * Game.SCALE);
 		
 		public static final int PARTICLE_RUNNING = 0;
 		public static final int PARTICLE_JUMP = 1;
