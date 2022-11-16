@@ -6,6 +6,7 @@ public class Particle {
 	
 	protected int aniIndex, particleState, particleType;
 	protected int aniTick, aniSpeed = 20;
+	protected boolean playedOnce = false;
 	protected int x, y;
 	
 	public Particle(int x, int y, int particleType) { 
@@ -26,6 +27,7 @@ public class Particle {
 			aniTick = 0;
 			aniIndex++;
 			if (aniIndex >= GetSpriteAmount(particleType)) { 
+				playedOnce = true;
 				aniIndex = 0;
 			}
 		}
@@ -37,6 +39,10 @@ public class Particle {
 	
 	public int getParticleState() { 
 		return particleState;
+	}
+	
+	public boolean getPlayedOnce() { 
+		return playedOnce;
 	}
 	
 	public int getX() { 

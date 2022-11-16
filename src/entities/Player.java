@@ -1,12 +1,18 @@
 package entities;
 
 import static utils.Constants.PlayerConstants.*;
+import static utils.Constants.Particle.PARTICLE_RUNNING;
+import static utils.Constants.Particle.PARTICLE_JUMP;
+import static utils.Constants.Particle.PARTICLE_FALL;
+import static utils.Constants.Particle.PARTICLE_XOFFSET;
+import static utils.Constants.Particle.PARTICLE_YOFFSET;
 import static utils.HelpMethods.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
+import particles.ParticleManager;
 import utils.LoadSave;
 
 public class Player extends Entity {
@@ -32,17 +38,23 @@ public class Player extends Entity {
 	private float jumpSpeed = -2.25f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
+	
+	// particle
+	private ParticleManager particleManager;
+	private int parTick, parSpawn = 100;
 
-	public Player(float x, float y, int width, int height) {
+	public Player(float x, float y, int width, int height, ParticleManager particleManager) {
 		super(x, y, width, height);
 		loadAnimations();
 		initHitbox(x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE));
+		this.particleManager = particleManager;
 	}
 
 	public void update() {
 		updatePos();
 		updateAnimationTick();
 		setAnimation();
+		setParticle();
 	}
 
 	public void render(Graphics g, int lvlOffset) {
@@ -128,21 +140,33 @@ public class Player extends Entity {
 
 		} else
 			updateXPos(xSpeed);
+		
 		moving = true;
 	}
-
+	
+	private void setParticle() { 
+		switch (playerAction) {
+			case RUNNING -> { 
+				parTick++;
+				
+				if(parTick > parSpawn) { 
+					particleManager.addParticle(PARTICLE_RUNNING, (int) (hitbox.x - PARTICLE_XOFFSET), (int) (hitbox.y + hitbox.height - PARTICLE_YOFFSET));
+					parTick = 0;
+				}
+			}
+		}
+	}
+	
 	private void jump() {
 		if (inAir)
 			return;
 		inAir = true;
 		airSpeed = jumpSpeed;
-
 	}
 
 	private void resetInAir() {
 		inAir = false;
 		airSpeed = 0;
-
 	}
 
 	private void updateXPos(float xSpeed) {
@@ -168,7 +192,6 @@ public class Player extends Entity {
 		this.lvlData = lvlData;
 		if (!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;
-
 	}
 
 	public void resetDirBooleans() {

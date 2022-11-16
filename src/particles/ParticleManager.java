@@ -1,9 +1,6 @@
 package particles;
 
-import static utils.Constants.Particle.PARTICLE_HEIGHT;
-import static utils.Constants.Particle.PARTICLE_HEIGHT_DEFALT;
-import static utils.Constants.Particle.PARTICLE_WIDTH;
-import static utils.Constants.Particle.PARTICLE_WIDTH_DEFALT;
+import static utils.Constants.Particle.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -20,18 +17,22 @@ public class ParticleManager {
 	
 	public ParticleManager()  {
 		loadParticleImgs();
-		addParticle();
 	}
 	
-	public void addParticle() { 
-		runDust.add(new RunDust(400, 400));
-		runDust.add(new RunDust(400, 300));
-		jumpDust.add(new JumpDust(500, 400));
-		fallDust.add(new FallDust(600, 400));
+	public void addParticle(int type, int x, int y) { 
+		switch (type) { 
+			case PARTICLE_RUNNING -> runDust.add(new RunDust(x, y));
+			case PARTICLE_JUMP -> jumpDust.add(new JumpDust(x, y));
+			case PARTICLE_FALL -> fallDust.add(new FallDust(x, y));
+		}
 	}
 	
 	public void update() { 
-		updateRunDust();
+		popParticle();
+		
+		if (!runDust.isEmpty())
+			updateRunDust();
+		
 		updateJumpDust();
 		updateFallDust();
 	}
@@ -51,8 +52,21 @@ public class ParticleManager {
 			c.update();
 	}
 	
+	private void popParticle() { 
+		if (!runDust.isEmpty())
+			popRunDust();
+	}
+	
+	private void popRunDust() { 
+		for (int i = 0; i < runDust.size(); i++)
+			if (runDust.get(0).getPlayedOnce())
+				runDust.remove(i);
+	}
+	
 	public void draw(Graphics g, int lvlOffset) {
-		drawRunDust(g, lvlOffset);
+		if (!runDust.isEmpty())
+			drawRunDust(g, lvlOffset);
+		
 		drawJumpDust(g, lvlOffset);
 		drawFallDust(g, lvlOffset);
 	}

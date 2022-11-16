@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
+import particles.ParticleManager;
+
 public abstract class Entity {
 
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle2D.Float hitbox;
-
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;

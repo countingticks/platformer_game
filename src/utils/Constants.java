@@ -48,17 +48,20 @@ public class Constants {
 		public static final int PARTICLE_WIDTH = (int) (PARTICLE_WIDTH_DEFALT * Game.SCALE);
 		public static final int PARTICLE_HEIGHT = (int) (PARTICLE_HEIGHT_DEFALT * Game.SCALE);
 		
-		public static final int RUNNING = 0;
-		public static final int JUMP = 1;
-		public static final int FALL = 2;
+		public static final int PARTICLE_XOFFSET = (int) (26 * Game.SCALE);
+		public static final int PARTICLE_YOFFSET = (int) (19 * Game.SCALE);
+		
+		public static final int PARTICLE_RUNNING = 0;
+		public static final int PARTICLE_JUMP = 1;
+		public static final int PARTICLE_FALL = 2;
 		
 		public static int GetSpriteAmount(int particle_type) { 
 			int state = 0;
 			
 			switch (particle_type) { 
-				case RUNNING -> state = 5;
-				case JUMP -> state = 6;
-				case FALL -> state = 5;
+				case PARTICLE_RUNNING -> state = 5;
+				case PARTICLE_JUMP -> state = 6;
+				case PARTICLE_FALL -> state = 5;
 			}
 			
 			return state;

@@ -5,6 +5,7 @@ import static utils.HelpMethods.*;
 import static utils.Constants.Directions.*;
 
 import main.Game;
+import particles.ParticleManager;
 
 public abstract class Enemy extends Entity {
 	
